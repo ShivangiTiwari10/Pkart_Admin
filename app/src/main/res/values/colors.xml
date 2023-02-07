@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="UiColors"> #0F8997 </color>
+    <color name="uiColors">#08171A </color>
+
 </resources>
