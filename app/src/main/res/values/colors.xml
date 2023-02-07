@@ -10,4 +10,8 @@
     <color name="UiColors"> #0F8997 </color>
     <color name="uiColors">#08171A </color>
 
+
+    <color name="button">#22A1FC </color>
+    <color name="text">#006BA6 </color>
+
 </resources>
