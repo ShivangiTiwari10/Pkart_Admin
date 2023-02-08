@@ -13,4 +13,7 @@
     <string name="upload_slider">upload Slider</string>
     <string name="all_order_activity">All Order Activity</string>
     <string name="loading">Loading..</string>
+    <string name="upload_category">Upload Categoty</string>
+    <string name="category_name">Category Name</string>
+    <string name="i_am_avtar">I am Avtar</string>
 </resources>
