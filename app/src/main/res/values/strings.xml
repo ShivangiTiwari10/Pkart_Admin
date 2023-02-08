@@ -16,4 +16,5 @@
     <string name="upload_category">Upload Categoty</string>
     <string name="category_name">Category Name</string>
     <string name="i_am_avtar">I am Avtar</string>
+    <string name="floating_Button">buttonFloating</string>
 </resources>

@@ -5,16 +5,35 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import com.example.pkartadmin.R
+import com.example.pkartadmin.databinding.FragmentProductBinding
 
 class ProductFragment : Fragment() {
+
+    private lateinit var binding: FragmentProductBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product, container, false)
+
+        binding = FragmentProductBinding.inflate(layoutInflater)
+
+        binding.floatingactionbutton.setOnClickListener {
+
+        Navigation.findNavController(it).navigate(R.id.action_productFragment_to_addProductFragment)
+        }
+
+        binding.floatingactionbutton.setOnClickListener {
+
+        }
+
+
+        return binding.root
+
+
     }
 
 }
