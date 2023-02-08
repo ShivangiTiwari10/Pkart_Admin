@@ -14,11 +14,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.pkartadmin.R
+import com.example.pkartadmin.adapter.CategoryAdapter
 import com.example.pkartadmin.databinding.FragmentCategoryBinding
+import com.example.pkartadmin.model.Categorymodel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class CategoryFragment : Fragment() {
@@ -44,7 +47,7 @@ class CategoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View{
+    ): View {
         // Inflate the layout for this fragment
 
         dialog = Dialog(requireContext())
@@ -52,6 +55,8 @@ class CategoryFragment : Fragment() {
         dialog.setCancelable(false)
 
         binding = FragmentCategoryBinding.inflate(layoutInflater)
+
+        getData()
         binding.apply {
 
             imageView.setOnClickListener {
@@ -69,22 +74,37 @@ class CategoryFragment : Fragment() {
         return binding.root
     }
 
+    private fun getData() {
+        val list = ArrayList<Categorymodel>()
+        Firebase.firestore.collection("Categories")
+            .get().addOnSuccessListener {
+                list.clear()
+
+                for (doc in it.documents) {
+                    val data = doc.toObject(Categorymodel::class.java)
+                    list.add(data!!)
+                }
+                binding.categoryRecycler.adapter = CategoryAdapter(requireContext(), list)
+
+            }
+    }
+
     private fun validateData(categoryName: String) {
 
-        if (categoryName.isEmpty()){
-            Toast.makeText(requireContext(),"Please provide category name",Toast.LENGTH_SHORT).show()
-        }
-        else if (imageUrl == null){
-            Toast.makeText(requireContext(),"Please select image",Toast.LENGTH_SHORT).show()
+        if (categoryName.isEmpty()) {
+            Toast.makeText(requireContext(), "Please provide category name", Toast.LENGTH_SHORT)
+                .show()
+        } else if (imageUrl == null) {
+            Toast.makeText(requireContext(), "Please select image", Toast.LENGTH_SHORT).show()
 
-        }else{
+        } else {
             uploadImage(categoryName)
 
         }
 
     }
 
-    private fun uploadImage(categoryName:String) {
+    private fun uploadImage(categoryName: String) {
         dialog.show()
 
         val fileName = UUID.randomUUID().toString() + ".jpg"
@@ -93,7 +113,7 @@ class CategoryFragment : Fragment() {
         refStorage.putFile(imageUrl!!)
             .addOnSuccessListener {
                 it.storage.downloadUrl.addOnSuccessListener { image ->
-                    storeData(categoryName,image.toString())
+                    storeData(categoryName, image.toString())
                 }
             }
             .addOnFailureListener {
@@ -104,7 +124,7 @@ class CategoryFragment : Fragment() {
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun storeData(categoryName :String, url: String) {
+    private fun storeData(categoryName: String, url: String) {
 
         val db = Firebase.firestore
 
@@ -123,9 +143,11 @@ class CategoryFragment : Fragment() {
 
                 binding.imageView.setImageDrawable(
 
-                    resources.getDrawable(R.drawable.preview))
+                    resources.getDrawable(R.drawable.preview)
+                )
                 binding.categoryName.text = null
 
+                getData()
                 Log.d("DATA", "$db")
                 Toast.makeText(requireContext(), "Category Added", Toast.LENGTH_SHORT).show()
             }
