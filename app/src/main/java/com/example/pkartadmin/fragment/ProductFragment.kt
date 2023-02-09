@@ -26,6 +26,7 @@ class ProductFragment : Fragment() {
         Navigation.findNavController(it).navigate(R.id.action_productFragment_to_addProductFragment)
         }
 
+
         return binding.root
 
 
