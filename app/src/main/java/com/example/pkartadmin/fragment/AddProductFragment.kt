@@ -51,6 +51,7 @@ class AddProductFragment : Fragment() {
         }
 
     }
+
     @SuppressLint("NotifyDataSetChanged")
     private var launchProductActivity = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -118,7 +119,7 @@ class AddProductFragment : Fragment() {
             binding.productMrpEdit.error = "EmptyDescription"
         } else if (coverImage == null) {
             Toast.makeText(requireContext(), "Please select cover Image", Toast.LENGTH_SHORT).show()
-        } else if (listImages.size < 1) {
+        } else if (list.size < 1) {
             Toast.makeText(requireContext(), "Please select product Images", Toast.LENGTH_SHORT)
                 .show()
 
