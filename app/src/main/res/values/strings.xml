@@ -16,4 +16,14 @@
     <string name="upload_category">Upload Categoty</string>
     <string name="category_name">Category Name</string>
     <string name="i_am_avtar">I am Avtar</string>
+    <string name="floating_Button">buttonFloating</string>
+    <string name="select_cover_image">Select Cover Image</string>
+    <string name="product_sp">Product SP</string>
+    <string name="product_mrp">Product Mrp</string>
+    <string name="product_discription">Product Discription</string>
+    <string name="product_image">Product Image</string>
+    <string name="add_productss">Add Product</string>
+    <string name="product_name">Product Name</string>
+    <string name="todo">TODO</string>
+    <string name="shall">Shall</string>
 </resources>
