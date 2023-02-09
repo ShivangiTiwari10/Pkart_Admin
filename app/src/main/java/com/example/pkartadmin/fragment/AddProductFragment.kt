@@ -5,17 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pkartadmin.R
+import com.example.pkartadmin.databinding.FragmentAddProductBinding
 
 
 class AddProductFragment : Fragment() {
 
 
+
+    private lateinit var binding: FragmentAddProductBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_add_product, container, false)
+    ): View {
+
+        return binding.root
     }
 
 
