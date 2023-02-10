@@ -99,8 +99,6 @@ class AddProductFragment : Fragment() {
 
 
         return binding.root
-
-
     }
 
     private fun validateData() {
@@ -108,16 +106,20 @@ class AddProductFragment : Fragment() {
 
             binding.productNameEdit.requestFocus()
             binding.productNameEdit.error = "EmptyName"
-        } else if (binding.productSpEdit.text.toString().isEmpty()) {
-            binding.productSpEdit.requestFocus()
-            binding.productSpEdit.error = "EmptySp"
-        } else if (binding.productMrpEdit.text.toString().isEmpty()) {
+        }
+        else if (binding.productDicripEdit.text.toString().isEmpty()) {
+            binding.productDicripEdit.requestFocus()
+            binding.productDicripEdit.error = "EmptyDescription"
+        }
+        else if (binding.productMrpEdit.text.toString().isEmpty()) {
             binding.productMrpEdit.requestFocus()
             binding.productMrpEdit.error = "EmptyMrp"
-        } else if (binding.productDicripEdit.text.toString().isEmpty()) {
-            binding.productMrpEdit.requestFocus()
-            binding.productMrpEdit.error = "EmptyDescription"
-        } else if (coverImage == null) {
+        }
+        else if (binding.productSpEdit.text.toString().isEmpty()) {
+            binding.productSpEdit.requestFocus()
+            binding.productSpEdit.error = "EmptySp"
+        }
+        else if (coverImage == null) {
             Toast.makeText(requireContext(), "Please select cover Image", Toast.LENGTH_SHORT).show()
         } else if (list.size < 1) {
             Toast.makeText(requireContext(), "Please select product Images", Toast.LENGTH_SHORT)
@@ -183,7 +185,7 @@ class AddProductFragment : Fragment() {
     private fun storeData() {
 
         val db = Firebase.firestore.collection("products")
-        val key = db.id
+        val key = db.document().id
 
         val data = AddProductModel(
             binding.productNameEdit.text.toString(),
