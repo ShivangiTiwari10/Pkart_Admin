@@ -75,18 +75,24 @@ class CategoryFragment : Fragment() {
     }
 
     private fun getData() {
-        val list = ArrayList<Categorymodel>()
-        Firebase.firestore.collection("Categories")
-            .get().addOnSuccessListener {
-                list.clear()
+        try {
+            val list = ArrayList<Categorymodel>()
+            Firebase.firestore.collection("Categories")
+                .get().addOnSuccessListener {
+                    list.clear()
 
-                for (doc in it.documents) {
-                    val data = doc.toObject(Categorymodel::class.java)
-                    list.add(data!!)
+                    for (doc in it.documents) {
+                        val data = doc.toObject(Categorymodel::class.java)
+                        list.add(data!!)
+                    }
+                    binding.categoryRecycler.adapter = CategoryAdapter(requireContext(), list)
+
                 }
-                binding.categoryRecycler.adapter = CategoryAdapter(requireContext(), list)
+        }catch(e:Exception) {
+            Log.d("E","Something wrong")
 
-            }
+        }
+
     }
 
     private fun validateData(categoryName: String) {
