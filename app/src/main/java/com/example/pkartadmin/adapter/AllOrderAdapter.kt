@@ -47,7 +47,7 @@ class AllOrderAdapter(val list: ArrayList<AllOrderModel>,val context: Context) :
         when (list[position].status) {
             "Ordered" -> {
 
-                holder.binding.proceedButton.text = "Ordered"
+                holder.binding.proceedButton.text = "Dispatched"
 
                 holder.binding.proceedButton.setOnClickListener {
                     upDateStatus("Dispatched",list[position].orderId!!)
@@ -55,18 +55,19 @@ class AllOrderAdapter(val list: ArrayList<AllOrderModel>,val context: Context) :
             }
 
             "Dispatched" -> {
-                holder.binding.proceedButton.text = "Dispatched"
+                holder.binding.proceedButton.text = "Delivered"
                 holder.binding.cancelButton.setOnClickListener {
                     upDateStatus("Canceled",list[position].orderId!!)
                 }}
 
             "Delivered" -> {
                 holder.binding.cancelButton.visibility = GONE
-                holder.binding.proceedButton.text = "Delivered"
+                holder.binding.proceedButton.text = "Already Delivered"
 
-                holder.binding.cancelButton.setOnClickListener {
-                    upDateStatus("Canceled",list[position].orderId!!)
-                }}
+//                holder.binding.cancelButton.setOnClickListener {
+//                    upDateStatus("Canceled",list[position].orderId!!)
+//                }
+            }
 
             "Canceled" -> {
 
