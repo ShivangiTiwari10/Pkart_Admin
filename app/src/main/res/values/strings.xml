@@ -26,4 +26,8 @@
     <string name="product_name">Product Name</string>
     <string name="todo">TODO</string>
     <string name="shall">Shall</string>
+    <string name="price">Price</string>
+    <string name="cancel">Cancel</string>
+    <string name="dispatched">Dispatched</string>
+    <string name="price_1200rs">Price : 1200rs</string>
 </resources>
