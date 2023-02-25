@@ -56,12 +56,15 @@ class AllOrderAdapter(val list: ArrayList<AllOrderModel>,val context: Context) :
 
             "Dispatched" -> {
                 holder.binding.proceedButton.text = "Delivered"
-                holder.binding.cancelButton.setOnClickListener {
-                    upDateStatus("Canceled",list[position].orderId!!)
+
+                holder.binding.proceedButton.setOnClickListener {
+                    upDateStatus("Delivered",list[position].orderId!!)
                 }}
 
             "Delivered" -> {
                 holder.binding.cancelButton.visibility = GONE
+                holder.binding.proceedButton.isEnabled = false
+
                 holder.binding.proceedButton.text = "Already Delivered"
 
 //                holder.binding.cancelButton.setOnClickListener {
@@ -70,6 +73,7 @@ class AllOrderAdapter(val list: ArrayList<AllOrderModel>,val context: Context) :
             }
 
             "Canceled" -> {
+                holder.binding.cancelButton.isEnabled = false
 
                 holder.binding.proceedButton.visibility =GONE
             }
